@@ -1,0 +1,15 @@
+# Ignore the HighD files directory
+data/HighD_data/
+data/ExiD_data/
+data/comparison_datasets/
+
+#Ignore the lea
+
+#ignore vscode files
+.vscode/
+
+#pycahe files
+.pyc
+src/__pycache__/
+
+
