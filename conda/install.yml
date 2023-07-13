@@ -255,4 +255,3 @@ dependencies:
   - zipp=3.8.0=py310hecd8cb5_0
   - zlib=1.2.13=h4dc903c_0
   - zstd=1.5.2=hcb37349_0
-prefix: /Users/thibault.charlottin/opt/anaconda3/envs/phD_Data_Analysis

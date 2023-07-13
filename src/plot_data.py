@@ -10,9 +10,9 @@ import statistics as stats
 import os
 from scipy import stats
 from sklearn.metrics import mean_squared_error
+import itertools
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
-import itertools
 sns.set_theme()
 sns.set_palette("colorblind")
 
@@ -141,10 +141,11 @@ def compute_CO2_regression(results_path,speed,setting,MOTH_co2carb):
     sns.regplot(x = veh_list,y= conso_list,label = setting + ' '+r'$\ RMSE$'+'='+str(round(RMSE,2)))   
     return np.array([int(len(veh_list)),slope, intercept, RMSE])
 
-def plot_consumption_regression_engine(results_path,setting_list,MOTH_co2carb,marker_style_list,veh_list, label_list):
-    """plot consumption vs position in platton linear regression using Engine experiments results"""
 
-    df = exploit_engine.compute_df_emission_consumption(results_path,setting_list,MOTH_co2carb,veh_list)
+def plot_consumption_regression_engine(results_path,setting_list,MOTH_co2carb,marker_style_list,veh_list, label_list):
+    """plot fuel consumtion vs position in platton mixed linear model regression using Engine experiments results"""
+
+    df = engine.compute_df_emission_consumption(results_path,setting_list,MOTH_co2carb,veh_list)
     palette = itertools.cycle(sns.color_palette())
     for k in range(len(setting_list)): 
         data = df[df['setting']==setting_list[k]]
@@ -160,15 +161,15 @@ def plot_consumption_regression_engine(results_path,setting_list,MOTH_co2carb,ma
         performance["position"] = data.position
         performance["predicted"] = mdf.fittedvalues
 
-        sns.lmplot(x = "position", y = "predicted",scatter=False, data = performance, color = c)
-        plt.scatter(data['position'],data['consumption'], marker = marker_style_list[k], color = c, label = label_list[k])
+        sns.regplot(x = "position", y = "predicted",scatter=False, data = performance, color = c)
     plt.legend()
     return
 
-def plot_emission_regression_engine(results_path,setting_list,MOTH_co2carb,marker_style_list,veh_list, label_list):
-    """plot CO2 emission vs position in platton linear regression using Engine experiments results"""
 
-    df = exploit_engine.compute_df_emission_consumption(results_path,setting_list,MOTH_co2carb,veh_list)
+def plot_consumption_regression_engine(results_path,setting_list,MOTH_co2carb,marker_style_list,veh_list, label_list):
+    """plot fuel consumtion vs position in platton mixed linear model regression using Engine experiments results"""
+
+    df = engine.compute_df_emission_consumption(results_path,setting_list,MOTH_co2carb,veh_list)
     palette = itertools.cycle(sns.color_palette())
     for k in range(len(setting_list)): 
         data = df[df['setting']==setting_list[k]]
@@ -184,7 +185,6 @@ def plot_emission_regression_engine(results_path,setting_list,MOTH_co2carb,marke
         performance["position"] = data.position
         performance["predicted"] = mdf.fittedvalues
 
-        sns.lmplot(x = "position", y = "predicted",scatter=False, data = performance, color = c)
-        plt.scatter(data['position'],data['CO2_emission'], marker = marker_style_list[k], color = c, label = label_list[k])
+        sns.regplot(x = "position", y = "predicted",scatter=False, data = performance, color = c)
     plt.legend()
     return

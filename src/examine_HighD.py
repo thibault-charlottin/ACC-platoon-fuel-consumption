@@ -69,3 +69,14 @@ def running_all_datasets (path_HighD,tau,time_window,
                          mean_distance, std)
         print(np.mean(np.abs(df['x_speed']+df['yspeed'])),proportions_out[f])
     return proportions_out
+
+def count_time(path):
+    files = os.listdir(path)
+    total_time = 0
+    for f in trange(len(files)) : 
+        df = pd.read_csv(path+files[f])
+        ids = list(pd.unique(df['id']))
+        for id in ids : 
+            df_test = df[df['id']==id]
+            total_time +=  max(list(df_test['time']))-list(df_test['time'])[0]
+    return total_time
