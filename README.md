@@ -1,8 +1,34 @@
-# MnMS :candy:
+This reposit contains the codes of the TRB paper Examing the impact of ACC vehicles over fuel consumption, an engine based experiment<br>
 
-`MnMS` (**M**ultimodal **n**etwork **M**odelling and **S**imulation) is a multimodal dynamic traffic simulator designed for large-urban scale. It results from all research activites carried out within the ERC MAGnUM project. In a nutshell, users make travelling decisions considering all multimodal options on the city transportation network but motions are governed by regional multimodal MFD (macroscopic fundamental diagram) curves. So, all users share the same speed within a region and a transportation mode at a given time.
-
-The research activities that led to this simulation package have received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation program (grant agreement No 646592 – MAGnUM project)
+    Examing the impact of ACC vehicles over fuel consumption, an engine based experiment
+    │   console.ipynb
+    │   install.yml
+    │   Readme.md 
+    │   .gitignore
+    ├── individual_trajectories
+    ├── data_dor_engine
+        ├── *various csv files used in the engine bench*
+    ├── engine_results
+        ├── 1_test_serie
+        └── 2_test_serie
+    ├── HighD_corrected_data
+        └──  *HighD dataset trajectories smotthened via kernel regression*
+    ├── data
+        ├── long_setting
+        ├── medium_setting
+        ├── mixed
+        └── no_ACC
+    ├── src
+        │   compare_trajectories.py
+        │   examine_HighD.py
+        │   exploit_engine_data.py
+        │   exploiting_vehib.py
+        │   export_data.py
+        │   plot_data.py
+        │   read_data.py
+        │   smooth_data.py
+    └── article
+        └── *material for the article*
 
 ## Installation
 
