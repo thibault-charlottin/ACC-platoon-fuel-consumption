@@ -41,7 +41,7 @@ def analyse_window(path,dataframe_list,time_in_list,time_out_list,speed_array,me
 def analyzing_trajectory(df,tau,time_window,
                          path,dataframe_list,time_in_list,time_out_list,
                          mean_distance, std):
-    """use analyze_window method to """
+    """use analyze_window method to run the dtw algorithm in one dataset"""
     veh = df.id.unique()
     event_occurence_time = 0
     total_time = 0
@@ -59,7 +59,7 @@ def analyzing_trajectory(df,tau,time_window,
 def running_all_datasets (path_HighD,tau,time_window,
                          path_OpenACC,dataframe_list,time_in_list,time_out_list,
                          mean_distance, std):
-    """"""
+    """automatic running of the entire dtw based algorithm in the whole dataset"""
     files = sorted(os.listdir(path_HighD))
     proportions_out = np.zeros(len(files))
     for f in trange(len(files)) :
@@ -71,6 +71,7 @@ def running_all_datasets (path_HighD,tau,time_window,
     return proportions_out
 
 def count_time(path):
+    """returns total travel time of HighD and ExiD datasets"""
     files = os.listdir(path)
     total_time = 0
     for f in trange(len(files)) : 

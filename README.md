@@ -1,34 +1,33 @@
 This reposit contains the codes of the TRB paper Examing the impact of ACC vehicles over fuel consumption, an engine based experiment<br>
 
-    Examing the impact of ACC vehicles over fuel consumption, an engine based experiment
-    │   console.ipynb
-    │   install.yml
-    │   Readme.md 
-    │   .gitignore
-    ├── individual_trajectories
-    ├── data_dor_engine
-        ├── *various csv files used in the engine bench*
-    ├── engine_results
-        ├── 1_test_serie
-        └── 2_test_serie
-    ├── HighD_corrected_data
-        └──  *HighD dataset trajectories smotthened via kernel regression*
+## File structure
+Main branch   
+    ├── console.ipynb
+    ├── setup.py
+    ├── Readme.md 
+    ├── .gitignore
     ├── data
-        ├── long_setting
+        ├── Extracted_data
+        ├── Engine_results
+        ├── OpenACC_data
+        ├── *HighD_data*
+        └──  *ExiD_data*
+    ├── conda
+        └──  env.yaml
         ├── medium_setting
         ├── mixed
         └── no_ACC
-    ├── src
-        │   compare_trajectories.py
-        │   examine_HighD.py
-        │   exploit_engine_data.py
-        │   exploiting_vehib.py
-        │   export_data.py
-        │   plot_data.py
-        │   read_data.py
-        │   smooth_data.py
-    └── article
-        └── *material for the article*
+    └── src
+        ├── __init__.py
+        ├── compare_trajectories.py
+        ├── examine_HighD.py
+        ├── exploit_engine_data.py
+        ├── exploiting_vehib.py
+        ├── export_data.py
+        ├── extract_event.py
+        ├── plot_data.py
+        ├── read_data.py
+        └── smooth_data.py
 
 ## Installation
 
@@ -52,31 +51,15 @@ python -m pip install -e .
 ````
 
 
-## Tutorials
+## Recreating the engine results using VEHLIB 
 
-Tutorials can be found in the doc/tutorials folder as jupyter notebook.
+Vehlib can be installed at https://gitlab.univ-eiffel.fr/eco7/vehlib
+you need to run the '#export data for engine' cell to get the input trajectories
+In VEHLIB select the **Renault_Kadjar_TCE130** vehicule to run the trajectories
+documentation about how to run VEHLIB can be found in the above reposit
 
-## Tests
+## How to get HighD and ExiD data
 
-To launch tests run the following command at the root of the project:
-```bash
-pytest tests --cov=mnms -v
-```
+Those two datasetys can be found at https://www.highd-dataset.com/#download and https://www.exid-dataset.com/#download
+To get them you need to make a request using the request box in the websites
 
-
-## Documentation
-
-### Build
-
-To build the documentation using mkdocs, first update your conda environment with the doc dependencies:
-
-```bash
-conda activate mnms
-conda env update --file conda/doc.yaml
-```
-
-Then build the doc:
-
-```bash
-mkdocs serve 
-```
