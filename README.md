@@ -17,6 +17,12 @@ Main branch
         ├── medium_setting
         ├── mixed
         └── no_ACC
+    ├── VEHLIB
+        └── VEHLIB_Simulation_analysis.ipynb
+        ├── .mat_files
+        ├── Vehlib_results
+        ├── plot_data.py
+        └── exploiting_vehlib.py
     └── src
         ├── __init__.py
         ├── compare_trajectories.py
@@ -57,6 +63,9 @@ Vehlib can be installed at https://gitlab.univ-eiffel.fr/eco7/vehlib
 you need to run the '#export data for engine' cell to get the input trajectories
 In VEHLIB select the **Renault_Kadjar_TCE130** vehicule to run the trajectories
 documentation about how to run VEHLIB can be found in the above reposit
+To analyze the data you can use the VEHLIB_Simulation_analysis notebook in the VEHLIB folder.
+Matlab scripts that you need to run are in ther VEHLIB/.mat_files folder
+Please order your simulation result files in the VEHLIB/Vehlib_results folder
 
 ## How to get HighD and ExiD data
 
