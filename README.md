@@ -40,7 +40,7 @@ Main branch
 ## Installation
 
 ### From sources
-The environment of the repository is managed with `conda` which allows to track all packages installed. 
+Clone the repository into your hard drive. The environment is managed with `conda` which allows tracking all packages installed. 
 `conda` must be installed using the terminal or upgraded as explained [here](https://docs.conda.io/en/latest/miniconda.html). 
 
 To create a new environment, connect to the local working directory and run the following command: 
