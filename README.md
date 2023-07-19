@@ -43,7 +43,7 @@ Main branch
 The environment of the repository is managed with `conda` which allows tracking all packages installed. 
 `conda` must be installed using the terminal or upgraded as explained [here](https://docs.conda.io/en/latest/miniconda.html). 
 
-Clone the repository into a local working directory. To create a new environment, connect to the local working directory and run the following command: 
+Clone the repository into a local working directory. To create a new environment, connect to the local working directory and run the following command using the terminal: 
 ````bash
 conda env create -f conda/env.yaml
 ````
