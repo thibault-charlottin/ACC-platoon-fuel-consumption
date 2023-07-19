@@ -1,4 +1,4 @@
-This reposit contains the codes of the TRB paper Examing the impact of ACC vehicles over fuel consumption, an engine based experiment<br>
+This repository contains the codes of the TRB paper "Examing the impact of ACC vehicles over fuel consumption, an engine based experiment". <br>
 
 ## File structure
 ```
@@ -40,24 +40,25 @@ Main branch
 ## Installation
 
 ### From sources
+The environment of the repository is managed with 'conda' which allows to track all packages installed. 
+'conda' must be installed using the terminal or upgraded as explained [here](https://docs.conda.io/en/latest/miniconda.html). 
 
-Using [conda](https://docs.conda.io/en/latest/miniconda.html), create a new environment:
-
+To create a new environment, connect to the local working directory and run the following command: 
 ````bash
 conda env create -f conda/env.yaml
 ````
 
-Activate it:
+To activate the environment, run the following command:
 ````bash
 conda activate engine_ACC_TRB_2023
 ````
 
-Finally install the sources in the activated environment:
+To install the packages in the activated environment, run the following command:
 
 ````bash
 python -m pip install -e .
 ````
-
+Finally, the codes can be run using a source editor such as VS Code or Jupyter in Webmode. 
 
 ## Recreating the engine results using VEHLIB 
 
