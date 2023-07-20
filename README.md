@@ -2,8 +2,8 @@ This reposit contains the codes of the TRB paper Examing the impact of ACC vehic
 
 ## File structure
 
-''
-'📦ACC platoon fuel consumption
+'''
+📦ACC platoon fuel consumption
  ┣ 📂VEHLIB
  ┃ ┣ 📂.mat_files
  ┃ ┃ ┣ 📜VTH_BV.slxc
