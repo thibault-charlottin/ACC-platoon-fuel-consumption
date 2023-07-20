@@ -1,7 +1,7 @@
 This reposit contains the codes of the TRB paper Examing the impact of ACC vehicles over fuel consumption, an engine based experiment<br>
 
 ## File structure
-''''
+'''
 Main branch   
     ├── console.ipynb
     ├── setup.py
@@ -35,7 +35,7 @@ Main branch
         ├── plot_data.py
         ├── read_data.py
         └── smooth_data.py
-''''
+'''
 ## Installation
 To install the necessary packages follow the guidelines, be aware that they differ wheteher you are a Windows user or a Unix kernel based OS user.
 ### Unix distributions/MacOS installation
