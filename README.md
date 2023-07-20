@@ -2,7 +2,7 @@ This reposit contains the codes of the TRB paper Examing the impact of ACC vehic
 
 ## File structure
 
-'''
+```
 📦ACC platoon fuel consumption
  ┣ 📂VEHLIB
  ┃ ┣ 📂.mat_files
@@ -49,7 +49,7 @@ This reposit contains the codes of the TRB paper Examing the impact of ACC vehic
  ┣ 📜README.md
  ┣ 📜console.ipynb
  ┗ 📜setup.py
-'''
+```
 ## Installation
 
 To install the necessary packages follow the guidelines, be aware that they differ wheteher you are a Windows user or a Unix kernel based OS user.
