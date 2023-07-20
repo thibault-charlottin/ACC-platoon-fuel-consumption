@@ -2,42 +2,56 @@ This reposit contains the codes of the TRB paper Examing the impact of ACC vehic
 
 ## File structure
 
-'''
-Main branch   
-    ├── console.ipynb
-    ├── setup.py
-    ├── Readme.md 
-    ├── .gitignore
-    ├── data
-        ├── Extracted_data
-        ├── Engine_results
-        ├── OpenACC_data
-        ├── *HighD_data*
-        └──  *ExiD_data*
-    ├── conda
-        └──  env.yaml
-        ├── medium_setting
-        ├── mixed
-        └── no_ACC
-    ├── VEHLIB
-        └── VEHLIB_Simulation_analysis.ipynb
-        ├── .mat_files
-        ├── Vehlib_results
-        ├── plot_data.py
-        └── exploiting_vehlib.py
-    └── src
-        ├── __init__.py
-        ├── compare_trajectories.py
-        ├── examine_HighD.py
-        ├── exploit_engine_data.py
-        ├── exploiting_vehib.py
-        ├── export_data.py
-        ├── extract_event.py
-        ├── plot_data.py
-        ├── read_data.py
-        └── smooth_data.py
+''
+'📦ACC platoon fuel consumption
+ ┣ 📂VEHLIB
+ ┃ ┣ 📂.mat_files
+ ┃ ┃ ┣ 📜VTH_BV.slxc
+ ┃ ┃ ┣ 📜create_final_result.m
+ ┃ ┃ ┣ 📜debugcode.mat
+ ┃ ┃ ┣ 📜initpath_Thibault.m
+ ┃ ┃ ┣ 📜simulate_14_17ms.asv
+ ┃ ┃ ┗ 📜simulate_14_17ms.m
+ ┃ ┣ 📂Vehlib_results
+ ┃ ┃ ┣ 📂consumption
+ ┃ ┣ 📜VEHLIB_simulation_analysis.ipynb
+ ┃ ┣ 📜exploiting_vehlib.py
+ ┃ ┗ 📜plot_data.py
+ ┣ 📂conda
+ ┃ ┗ 📜env.yaml
+ ┣ 📂data
+ ┃ ┣ 📂Engine_results
+ ┃ ┃ ┣ 📂analysis_data
+ ┃ ┃ ┣ 📂raw_results
+ ┃ ┣ 📂ExiD_data
+ ┃ ┣ 📂Extracted_data
+ ┃ ┃ ┣ 📂individual_trajectories
+ ┃ ┣ 📂HighD_data
+ ┃ ┣ 📂OpenACC_data
+ ┃ ┃ ┣ 📂long_setting
+ ┃ ┃ ┣ 📂medium setting
+ ┃ ┃ ┣ 📂mixed
+ ┃ ┃ ┣ 📂no_ACC
+ ┃ ┃ ┗ 📂short_setting
+ ┃ ┗ 📂comparison_datasets
+ ┣ 📂src
+ ┃ ┣ 📜compare_trajectories.py
+ ┃ ┣ 📜examine_HighD.py
+ ┃ ┣ 📜exploit_engine_data.py
+ ┃ ┣ 📜export_data.py
+ ┃ ┣ 📜extract_event.py
+ ┃ ┣ 📜plot_data.py
+ ┃ ┣ 📜read_data.py
+ ┃ ┗ 📜smooth_data.py
+ ┣ 📜.gitignore
+ ┣ 📜ExiD mean speed.csv
+ ┣ 📜HighD mean speed.csv
+ ┣ 📜README.md
+ ┣ 📜console.ipynb
+ ┗ 📜setup.py
 '''
 ## Installation
+
 To install the necessary packages follow the guidelines, be aware that they differ wheteher you are a Windows user or a Unix kernel based OS user.
 ### Unix distributions/MacOS installation
 
