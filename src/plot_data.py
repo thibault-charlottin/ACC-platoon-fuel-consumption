@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import src.compare_trajectories as compare
-import VEHLIB.src.exploiting_vehlib as exploit
 import src.exploit_engine_data as exploit_engine
 import src.read_data as read
 import matplotlib.pyplot as plt
@@ -166,25 +165,24 @@ def plot_consumption_regression_engine(results_path,setting_list,MOTH_co2carb,ma
     return
 
 
-def plot_consumption_regression_engine(results_path,setting_list,MOTH_co2carb,marker_style_list,veh_list, label_list):
+def plot_consumption_regression_engine(df,formula, set_hue):
     """plot fuel consumtion vs position in platton mixed linear model regression using Engine experiments results"""
 
-    df = engine.compute_df_emission_consumption(results_path,setting_list,MOTH_co2carb,veh_list)
-    palette = itertools.cycle(sns.color_palette())
-    for k in range(len(setting_list)): 
-        data = df[df['setting']==setting_list[k]]
-        data.columns = ['position','setting','consumption','CO2_emission']
-        # Run LMER
+    data = df
+ 
+    data["grp"] = data["setting"].astype(str) + data["position"].astype(str)
+    md = smf.mixedlm(formula, data, groups=data["grp"])
+    mdf = md.fit()
 
-        md = smf.mixedlm("CO2_emission~position", data, groups=data["position"], re_formula='~position')
-        mdf = md.fit()
-
-        c = next(palette)
-        performance = pd.DataFrame()
-        performance["CO2_emission"] = mdf.resid.values
-        performance["position"] = data.position
-        performance["predicted"] = mdf.fittedvalues
-
-        sns.regplot(x = "position", y = "predicted",scatter=False, data = performance, color = c)
-    plt.legend()
+    performance = pd.DataFrame()
+    performance["position"] = data.position
+    performance["predicted"] = mdf.fittedvalues
+    performance[set_hue] = data[set_hue]
+    plt.rcParams["figure.figsize"] = (9,5)
+    sns.lmplot(x = "position", y = "predicted",scatter=False,hue = set_hue, data = performance,legend_out=False,height=5, aspect=1.4)
+    plt.xticks([k for k in range(1,12)],size = 14)
+    plt.yticks(size = 14)
+    plt.xlabel('position', size = 15)
+    plt.ylabel('consumption [L/100km]', size = 15)
+    plt.legend(fontsize = 15)
     return
