@@ -74,14 +74,15 @@ You can then run the commands in the console.ipynb file
 
 ### Windows installation
 Copy your local path to this repository
-Open Powershell and type
+Open Anaconda navigator
+Open CMD.exe prompt and type
 ````bash
 cd %paste your path
 ````
 
 then type 
 ````bash
-conda env create -f conda/env.yaml
+conda env create -f conda/ACC_fuel_windows.yml
 ````
 
 Activate it:
