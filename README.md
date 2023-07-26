@@ -99,6 +99,7 @@ The data of the experiment using the engine bench and the OpenACC data is presen
 You can visualize it using the console.ipynb file<br>
 ⚠️ Running some cells is time-consuming <br>
 These cells are marked with the message 	'⚠️ running the next cell is time-consuming' right above<br>
+The replacement cells are marked ':arrow_heading_down: use this cell to bypass'<br>
 ### Selecting the datasets
 Run the cells in the console.ipynb file in the 'Selecting data' section<br>
 ### Plotting the engine bench results

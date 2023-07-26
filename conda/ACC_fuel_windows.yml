@@ -1,4 +1,4 @@
-name: ACC_fuel_consumption
+name: ACC_test
 channels:
   - conda-forge
   - defaults
