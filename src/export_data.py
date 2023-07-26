@@ -3,6 +3,7 @@ import numpy as np
 import os
 
 def adapt_data_to_bench(dataframe) : 
+    """create a 15s warm up period for each cycle to be injected in the bench"""
     columns_list = list(dataframe.columns)
     dataframe['Time'] = dataframe['Time']+150
     time_adapt = np.array([t/10 for t in range(149)])
@@ -21,6 +22,7 @@ def adapt_data_to_bench(dataframe) :
     return dataframe_out
 
 def export_trajectories(dataframe,out_dir,experiment_name):
+    """export data to csv files that will then be injecteed in the bench"""
     columns_list = list(dataframe.columns)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
@@ -31,6 +33,8 @@ def export_trajectories(dataframe,out_dir,experiment_name):
     return
 
 def export_1Hz_trajectories(dataframe,out_dir,experiment_name):
+    """export data to csv files that will then be injecteed in the bench
+    rate=1Hz, those files are test files to quickly see if the interpolation in the engine works"""
     columns_list = list(dataframe.columns)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
