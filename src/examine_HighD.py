@@ -10,7 +10,20 @@ import os
 def get_distance(path,dataframe_name1,time_in1,time_out1,speed_array):
     """compare distance that exist between openACC leaders acceleration/decceleration event speed profile
     and a speed array taken from HighD
-    used algorithm dtw"""
+    used algorithm dtw
+     -------
+     Inputs
+    ----------
+    path of the dataframes
+    name of the dataframe that contains the leader/first follower trajectory to be compared
+    time slot (time_in time_out)
+    speed array : reference 
+    -------
+    Returns
+    -------
+    dtw distance between speed profiles of first follower and HighD trajectory 
+    
+    """
     df =  extract.extract_event_array(path,dataframe_name1,time_in1,time_out1)
     d, _ = dtw.warping_paths(df['Speed'], speed_array, window=25, psi=2)
     return d
@@ -18,19 +31,44 @@ def get_distance(path,dataframe_name1,time_in1,time_out1,speed_array):
 def plot_distance(path,dataframe_name1,time_in1,time_out1,speed_array):
     """plot distance that exist between openACC leaders acceleration/decceleration event speed profile
     and a speed array taken from HighD
-    used algorithm dtw"""
+    used algorithm dtw
+         -------
+     Inputs
+    ----------
+    path of the dataframes
+    name of the dataframe that contains the leader/first follower trajectory to be compared
+    time slot (time_in time_out)
+    speed array : reference 
+    
+    -------
+    Returns
+    -------
+    plot dtw distance between speed profiles of first follower and HighD trajectory 
+    """
     df =  extract.extract_event_array(path,dataframe_name1,time_in1,time_out1)
     d, paths = dtw.warping_paths(df['Speed'], speed_array, window=25, psi=2)
     best_path = dtw.best_path(paths)
     dtwvis.plot_warpingpaths(df['Speed'], speed_array, paths, best_path)
     return 
 
-
 def analyse_window(path,dataframe_list,time_in_list,time_out_list,speed_array,mean_distance, std):
     """get_distance function used between all the leaders event speed profile and a speed profile taken from HighD
     if the mean distance is smaller than the mean distance between all the leaders speed events
     then the test is considered as successfull
-    Then the algorithm returns if the trajectories can be considered as being the same kind of event"""
+    Then the algorithm returns if the trajectories can be considered as being the same kind of event
+
+    Inputs
+    ----------
+    path of the dataframes
+    name of the dataframe that contains the leader/first follower trajectory to be compared
+    time slot (time_in time_out)
+    speed array : reference 
+    mean distance/std : refer to mean and std distance between triggering events of OpenACC
+    -------
+    Returns
+    -------
+    True if speed profile in HighD time slot is close enough to the triggering event speed profile
+    """
     distance_list = []
     for k in range(len(dataframe_list)):
             distance_list.append(get_distance(path,dataframe_list[k],time_in_list[k],time_out_list[k],speed_array))

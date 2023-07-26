@@ -3,7 +3,15 @@ import numpy as np
 import os
 
 def adapt_data_to_bench(dataframe) : 
-    """create a 15s warm up period for each cycle to be injected in the bench"""
+    """create a 15s warm up period for each cycle to be injected in the bench
+    ----------
+    Inputs
+    ---------
+    dataframe that compiles all the speed profiles
+    -------
+    Returns
+    -------
+    dataframe that compiles all the speed profiles formated for the bench"""
     columns_list = list(dataframe.columns)
     dataframe['Time'] = dataframe['Time']+150
     time_adapt = np.array([t/10 for t in range(149)])
@@ -22,7 +30,18 @@ def adapt_data_to_bench(dataframe) :
     return dataframe_out
 
 def export_trajectories(dataframe,out_dir,experiment_name):
-    """export data to csv files that will then be injecteed in the bench"""
+    """export data to csv files that will then be injecteed in the bench
+    ----------
+    Inputs
+    ---------
+    dataframe that compiles all the speed profiles
+    output directory
+    name of the experimentation (futur label name in the results part)
+    -------
+    Returns
+    -------
+    None
+    """
     columns_list = list(dataframe.columns)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)
@@ -34,7 +53,18 @@ def export_trajectories(dataframe,out_dir,experiment_name):
 
 def export_1Hz_trajectories(dataframe,out_dir,experiment_name):
     """export data to csv files that will then be injecteed in the bench
-    rate=1Hz, those files are test files to quickly see if the interpolation in the engine works"""
+    rate=1Hz, those files are test files to quickly see if the interpolation in the engine works
+    ----------
+    Inputs
+    ---------
+    dataframe that compiles all the speed profiles
+    output directory
+    name of the experimentation (futur label name in the results part)
+    -------
+    Returns
+    -------
+    None
+    """
     columns_list = list(dataframe.columns)
     if not os.path.exists(out_dir):
         os.makedirs(out_dir)

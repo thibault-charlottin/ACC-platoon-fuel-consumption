@@ -6,7 +6,18 @@ from dtaidistance import dtw
 from dtaidistance import dtw_visualisation as dtwvis
 
 def select_by_speed(dictionnary, speed):
-    """group OpenACC result files based on the maximum speed that has been reccorded"""
+    """group OpenACC result files based on the maximum speed that has been reccorded
+    
+    -------
+    Input
+    -------
+    dictionnary containing all of the datasheet names of OpenACC
+    reference speed
+    -------
+    Returns
+    -------
+    dictionnary that contains all the files containing speed trajectories around the reference speed
+    """
     dico = {}
     keys = list(dictionnary.keys())
     for key in range(len(keys)) : 
@@ -19,7 +30,17 @@ def select_by_speed(dictionnary, speed):
 def compare_trajectory(dfA, dfB,plotting): 
     """compare the shape of the leaders curves from one dataframe to another
     used algorithm: dtw that focuses on the deviations of the curves without dealing with the numerical values
-    option to plot"""
+    option to plot
+    -------
+    Input
+    -------
+    the two dataframes to be plotted
+    plotting option
+    -------
+    Returns
+    -------
+    dtw distance
+    """
     df1 = smooth.interpolate(dfA)
     df2 = smooth.interpolate(dfB)
     TIMEA,SPEEDA = read.extract_vectors(df1)
@@ -32,7 +53,17 @@ def compare_trajectory(dfA, dfB,plotting):
 
 
 def compare_dictionnaries(dicoA, dicoB, keyA, keyB, plotting) : 
-    """compare_trajectory function extended to the whole set of OpenACC csv files within the same speed interval"""
+    """compare_trajectory function extended to the whole set of OpenACC csv files within the same speed interval
+    -------
+    Input
+    -------
+    two dictionnaries containing the selected speed types,
+    key A key B : setting types
+    plotting option
+    -------
+    Returns
+    -------
+    dataframe that contains all dtw distances"""
     df_out = pd.DataFrame({keyA : [], keyB : [], 'distance' : []})
     for k in list(dicoA.keys()) :
         for l in list(dicoB.keys()):
@@ -42,7 +73,8 @@ def compare_dictionnaries(dicoA, dicoB, keyA, keyB, plotting) :
     return df_out
 
 def routine (dicoA, dicoB, dicoC, dicoD, dicoE, keyA, keyB, keyC, keyD, keyE) : 
-    """funciton to run compare dictionaries on the whole set of OpenACC csv files"""
+    """funciton to run compare dictionaries on the whole set of OpenACC csv files
+    It uses compare_dictionnaries function"""
     df_compareAB = compare_dictionnaries(dicoA, dicoB, keyA, keyB, plotting = False)
     df_compareAC = compare_dictionnaries(dicoA, dicoC, keyA, keyC, plotting = False)
     df_compareAD = compare_dictionnaries(dicoA, dicoD, keyA, keyD, plotting = False)

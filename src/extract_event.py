@@ -3,7 +3,17 @@ import numpy as np
 from dtaidistance import dtw
 
 def extract_event(path,dataframe_name,time_in,time_out):
-    '''extract speed within a selected time slot in an OpenACC datasheet'''
+    '''extract speed within a selected time slot in an OpenACC datasheet
+    ----------
+    Inputs
+    ----------
+    path of the dataframes
+    name of the used df
+    time slot (time_in time_out)
+    -------
+    Returns
+    -------
+    speed vs time array within the time slot'''
     df = pd.read_csv(path+dataframe_name)
     df_trunc = df[(df['Time']>time_in) & (df['Time']<time_out)]
     df_out = pd.DataFrame({'Time' : list(df_trunc['Time']), 'Speed' : list(df_trunc['Speed'])})
@@ -12,7 +22,19 @@ def extract_event(path,dataframe_name,time_in,time_out):
 def characterize_singular_event(path,dataframe_name,time_in,time_out):
     """computes speed difference in the deceleration and acceleration phase 
     computes decceleration period and acceleration period
-    for one speed profile"""
+    for one speed profile
+    ----------
+    Inputs
+    ----------
+    path of the dataframes
+    name of the used df
+    time slot (time_in time_out)
+    -------
+    Returns
+    -------
+    delta speed deceleration and acceleration
+    delta time deceleration and acceleration
+    """
     df = extract_event(path,dataframe_name,time_in,time_out)
     dv2 = df['Speed'][df['Speed'].argmax()]-df['Speed'][df['Speed'].argmin()]
     dt2 = df['Time'][df['Speed'].argmax()]-df['Time'][df['Speed'].argmin()]
@@ -26,6 +48,17 @@ def characterize_mean_event(path, dataframe_list,time_in_list,time_out_list):
     speed difference in the deceleration and acceleration phase 
     decceleration period and acceleration period
     for all the first follower trajectories
+    ----------
+    Inputs
+    ----------
+    path of the dataframes
+    list ofname of the used df
+    list of time slot (time_in time_out)
+    -------
+    Returns
+    -------
+    mean delta speed deceleration and acceleration
+    mean delta time deceleration and acceleration
     """
     dv1_list,dv2_list,dt1_list,dt2_list = [],[],[],[]
     for k in range(len(dataframe_list)):
@@ -37,7 +70,18 @@ def characterize_mean_event(path, dataframe_list,time_in_list,time_out_list):
 
 def extract_event_array(path,dataframe_name,time_in,time_out):
     """extract the trigering event from a speed profile
-    returns it as an array"""
+    returns it as an array
+    ----------
+    Inputs
+    ----------
+    path of the dataframes
+    name of the used df
+    time slot (time_in time_out)
+    -------
+    Returns
+    -------
+    vector that contains the
+    mean delta speed deceleration and acceleration and mean delta time deceleration and acceleration"""
     df = extract_event(path,dataframe_name,time_in,time_out)
     max = df['Speed'].argmax()
     truncated_df = df.head(df['Speed'].argmin())
@@ -48,7 +92,17 @@ def extract_event_array(path,dataframe_name,time_in,time_out):
     return df_out
 
 def get_distance(path,dataframe_name1,dataframe_name2,time_in1,time_in2,time_out1,time_out2):
-    """compare the dtw distance from to triggering event"""
+    """compare the dtw distance from to triggering event
+     ----------
+    Inputs
+    ----------
+    path of the dataframes
+    name of the two used df
+    time slot (time_in time_out)
+    -------
+    Returns
+    -------
+    dtw distance"""
     df1 =  extract_event_array(path,dataframe_name1,time_in1,time_out1)
     df2 =  extract_event_array(path,dataframe_name2,time_in2,time_out2)
     d, paths = dtw.warping_paths(df1['Speed'], df2['Speed'], window=25, psi=2)
@@ -56,7 +110,17 @@ def get_distance(path,dataframe_name1,dataframe_name2,time_in1,time_in2,time_out
 
 def get_mean_distance(path,dataframe_list,time_in_list,time_out_list):
     """using get_distance funciton computes the mean distance from one triggering event to another
-    this will be sued as the reference to say if one ExiD speed profile of 15s is close enough to the triggering event"""
+    this will be used as the reference to say if one ExiD speed profile of 15s is close enough to the triggering event
+     ----------
+    Inputs
+    ----------
+    path of the dataframes
+    list of the name of the used df
+    list of the ime slots (time_in time_out)
+    -------
+    Returns
+    -------
+    mean dtw distance"""
     distance_list = []
     for k in range(len(dataframe_list)):
         try :
