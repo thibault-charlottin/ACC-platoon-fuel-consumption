@@ -1,4 +1,4 @@
-This reposit contains the codes of the TRB paper "Fuel consumption of adaptive cruise control platoons: bench experiments and data-driven estimation for real traffic"<br>
+This reposit contains the codes of the TRR paper "Fuel consumption of adaptive cruise control platoons: bench experiments and data-driven estimation for real traffic"<br>
 
 ## File structure
 
